@@ -59,7 +59,6 @@ app.get('/', (req, res) => {
 
     res.render('home', {
       'category': data,
-      'users': data,
       auth: req.session.auth
     });
   });
@@ -70,7 +69,6 @@ app.get('/catalog', (req, res) => {
 
     res.render('catalog', {
       'category': data,
-      'users': data,
       auth: req.session.auth
     });
   });
@@ -243,19 +241,18 @@ app.post('/login', (req, res) => {
     "SELECT * FROM users WHERE name=?",
     [[req.body.name]], (err, data, fields) => {
       if (err) throw err;
-      
-      if(data.length > 0){
+
+      if (data.length > 0) {
         let hash = data[0].password;
         let password = req.body.password;
         connection.query(
           "SELECT * FROM users WHERE name=? and password=?",
           [[req.body.name], [req.body.password]], (err, data, fields) => {
-            if (err) throw err;         
+            if (err) throw err;
             bcrypt.compare(password, hash, (err, result) => {
               if (result == true) {
                 req.session.auth = true;
                 res.redirect('/');
-                console.log(req.session);
               }
               else {
 
@@ -264,15 +261,15 @@ app.post('/login', (req, res) => {
               }
             });
           });
-        }
-        else {
+      }
+      else {
 
-          req.session.auth = false;
-          res.redirect('/auth');
-        }
-    
-    
-  });
+        req.session.auth = false;
+        res.redirect('/auth');
+      }
+
+
+    });
 });
 
 
@@ -462,14 +459,20 @@ app.get('/GenshinImpact', (req, res) => {
   });
 });
 app.get('/GenshinImpact/:id', (req, res) => {
-  connection.query("SELECT * FROM genshinimpact WHERE id=?", [req.params.id],
-    (err, data, fields) => {
-      if (err) throw err;
+  connection.query("SELECT * FROM category", (err, data, fields) => {
+    if (err) throw err;
+    console.log(data);
+    connection.query("SELECT * FROM genshinimpact WHERE id=?", [req.params.id],
+      (err, data, fields) => {
+        if (err) throw err;
+        console.log(data);
 
-      res.render('item', {
-        'genshinimpact': data[0],
-        'category': data,
-        auth: req.session.ayth
       });
+    res.render('item', {
+      'genshinimpact': data[0],
+      'category': data,
+      auth: req.session.ayth
     });
+
+  });
 });

@@ -92,7 +92,8 @@ p{
     margin-bottom: 20px;
   }
   .section__price{
-    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
   }
   .section__inf span{
     font-weight: 700;

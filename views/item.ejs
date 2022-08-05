@@ -5,7 +5,7 @@
 <div class="section">
   <div class="section__all">
     <div class="section__left__box">
-      <img src="/img/category/games/GenshinImpact/<%= genshinimpact.image %>">
+      <img src="/img/category/games/GenshinImpact/<%= genshinimpact.image %>" alt="ERROR">
     </div>
     <div class="section__right__box">
       <div class="section__inf">
@@ -13,7 +13,7 @@
           <%= genshinimpact.title %>
         </h2>
         <div class="section__price">
-          <span><%= genshinimpact.price %> <small>₽</small></span>
+          <p><%= genshinimpact.price %> <small>₽</small></p>
         </div>
         <p><%= genshinimpact.description %></p>
         <form method="post" action="/cart_add" class="">
@@ -39,20 +39,20 @@
   </div>
   <div class="line"></div>
   <% for (let i = 0; i < category.length; i++) { %>
-  <div class="container">
-    <div class="product">
-      <div class="image">
-        <a href="<%= category[i].href %>">
-          <img class="container-img" src="img/category/catalog/<%= category[i].image %>" alt="ERROR"></a>
+    <div class="container">
+      <div class="product">
+        <div class="image">
+          <a href="<%= category[i].href %>">
+            <img class="container-img" src="./img/category/catalog/<%= category[i].image %>" alt="ERROR"></a>
+        </div>
+        <div class="info">
+          <h3><%= category[i].title %></h3>
+        </div>
       </div>
-      <div class="info">
-        <h3><%= category[i].title %></h3>
-      </div>
+  
     </div>
-
-  </div>
-  <% if(i==2) break %>
-  <% } %>
+    <% if(i==2) break %>
+    <% } %>
 </div>
 <% if(auth){%>
 <div class="form__user">
