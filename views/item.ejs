@@ -1,0 +1,94 @@
+<%- include('particles/header.ejs') %>
+
+<%- include('particles/navigation.ejs') %>
+
+<div class="section">
+  <div class="section__all">
+    <div class="section__left__box">
+      <img src="/img/category/games/GenshinImpact/<%= genshinimpact.image %>">
+    </div>
+    <div class="section__right__box">
+      <div class="section__inf">
+        <h2>
+          <%= genshinimpact.title %>
+        </h2>
+        <div class="section__price">
+          <span><%= genshinimpact.price %> <small>₽</small></span>
+        </div>
+        <p><%= genshinimpact.description %></p>
+        <form method="post" action="/cart_add" class="">
+          <input value="<%= genshinimpact.id %>" class="form-group__input" type="text" id="shopping-cart" name="shopping-cart" placeholder="" style="display: none;">
+          <input value="<%= genshinimpact.title %>" class="form-group__input" type="text" id="title" name="title" placeholder="title" style="display: none;">
+          <input value="<%= genshinimpact.description %>" class="form-group__input" type="text" id="description" name="description" placeholder="Описание" style="display: none;">
+          <input value="<%= genshinimpact.image %>" class="form-group__input" type="text" id="image" name="image" placeholder="image" style="display: none;">
+          <input value="<%= genshinimpact.price %>" class="form-group__input" type="text" id="price" name="price" placeholder="price" style="display: none;">
+          <input value="<%= genshinimpact.stars %>" class="form-group__input" type="text" id="stars" name="stars" placeholder="stars" style="display: none;">
+          <input class="form-button-delete" type="submit" value="В корзину">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="new__products">
+  <div class="new__products__title">
+    <h2>
+      <ion-icon name="flame"></ion-icon>Смотрите также <ion-icon name="flame"></ion-icon>
+      </h3>
+  </div>
+  <div class="line"></div>
+  <% for (let i = 0; i < category.length; i++) { %>
+  <div class="container">
+    <div class="product">
+      <div class="image">
+        <a href="<%= category[i].href %>">
+          <img class="container-img" src="img/category/catalog/<%= category[i].image %>" alt="ERROR"></a>
+      </div>
+      <div class="info">
+        <h3><%= category[i].title %></h3>
+      </div>
+    </div>
+
+  </div>
+  <% if(i==2) break %>
+  <% } %>
+</div>
+<% if(auth){%>
+<div class="form__user">
+  <form action="/update" method="post" class="form_group_all">
+    <div class="form-group">
+      <label class="form-group__label" for="title">Заголовок</label>
+      <input value="<%= genshinimpact.title %>" class="form-group__input" type="text" id="title" name="title" placeholder="title">
+    </div>
+
+    <div class="form-group">
+      <label class="form-group__label" for="title">Описание</label>
+      <input value="<%= genshinimpact.description %>" class="form-group__input" type="text" id="description" name="description" placeholder="Описание">
+    </div>
+
+    <div class="form-group">
+      <label class="form-group__label" for="image">Картинка</label>
+      <input value="<%= genshinimpact.image %>" class="form-group__input" type="text" id="image" name="image" placeholder="image">
+    </div>
+    <input value="<%= genshinimpact.id %>" class="form-group__input" type="text" id="id" name="id" placeholder="" style="display: none;">
+    <input class="form-button" type="submit" value="Обновить">
+
+
+  </form>
+
+  <form method="post" action="/item-delete" class="form_group_all">
+    <input value="<%= genshinimpact.id %>" class="form-group__input" type="text" id="id" name="id" placeholder="" style="display: none;">
+    <input class="form-button-delete" type="submit" value="Удалить">
+  </form>
+
+  <form method="post" action="/cart_add" class="form_group_all">
+    <input value="<%= genshinimpact.id %>" class="form-group__input" type="text" id="shopping-cart" name="shopping-cart" placeholder="" style="display: none;">
+    <input value="<%= genshinimpact.title %>" class="form-group__input" type="text" id="title" name="title" placeholder="title" style="display: none;">
+    <input value="<%= genshinimpact.description %>" class="form-group__input" type="text" id="description" name="description" placeholder="Описание" style="display: none;">
+    <input value="<%= genshinimpact.image %>" class="form-group__input" type="text" id="image" name="image" placeholder="image" style="display: none;">
+    <input class="form-button-delete" type="submit" value="Купить">
+  </form>
+</div>
+<% } %>
+<%- include('particles/footer.ejs') %>
