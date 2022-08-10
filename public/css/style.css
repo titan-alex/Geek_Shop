@@ -79,31 +79,31 @@ p{
   }
   .section__left__box img {
     border-radius: 8px;
-    width: 500px;
+    width: 400px;
   }
   .section__right__box{
     display: inline-block;
   }
-  .section__inf{
+  .section__inf__item{
     text-align: left;
     margin: 0 0 0 30px;
   }
-  .section__inf, h2, p,  form{
+  .section__inf__item, h2, p{
     margin-bottom: 20px;
   }
   .section__price{
     font-size: 18px;
     font-weight: bold;
   }
-  .section__inf span{
+  .section__inf__item span{
     font-weight: 700;
     font-size: 18px;
   }
-  .section__inf h2 {
+  .section__inf__item h2 {
     margin-top: 0;
     
   }
-  .section__inf p{
+  .section__inf__item p{
     width: 70%;
    
   }
@@ -222,7 +222,6 @@ p{
   color: white;
   padding: 7px;
   background-color: red;
-  margin-bottom: 20px;
 }
 
 .form-button-delete:hover {

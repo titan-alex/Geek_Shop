@@ -25,7 +25,7 @@
   </div>
   <% } %>
 </div>
-
+<% if(auth){ %>
 <form action="/store-add" method="post" class="form_group_all">
   <div class="form-group">
     <label class="form-group__label" for="title">Заголовок</label>
@@ -57,4 +57,5 @@
   <input class="form-button-delete" type="submit" value="Удалить">
 
 </form>
+<% } %>
 <%- include('../particles/footer.ejs') %>

@@ -79,11 +79,6 @@ app.get('/logout', (req, res) => {
   res.redirect('/')
 });
 
-app.get('/item', (req, res) => {
-  res.render('item', {
-    auth: req.session.auth
-  });
-});
 app.get('/add', (req, res) => {
   res.render('add', {
     auth: req.session.auth
@@ -141,45 +136,45 @@ app.post('/store-add-gensh', (req, res) => {
 })
 
 
-app.post('/delete', (req, res) => {
-  connection.query(
-    "DELETE FROM items WHERE id=?;",
-    [[req.body.id]], (err, data, fields) => {
-      if (err) throw err;
+// app.post('/delete', (req, res) => {
+//   connection.query(
+//     "DELETE FROM items WHERE id=?;",
+//     [[req.body.id]], (err, data, fields) => {
+//       if (err) throw err;
 
-      res.redirect('/')
-    });
-})
+//       res.redirect('/')
+//     });
+// })
 
-app.post('/home-delete', (req, res) => {
-  connection.query(
-    "DELETE FROM items WHERE id=?;",
-    [[req.body.id]], (err, data, fields) => {
-      if (err) throw err;
+// app.post('/home-delete', (req, res) => {
+//   connection.query(
+//     "DELETE FROM items WHERE id=?;",
+//     [[req.body.id]], (err, data, fields) => {
+//       if (err) throw err;
 
-      res.redirect('/')
-    });
-})
+//       res.redirect('/')
+//     });
+// })
 
-app.post('/item-delete', (req, res) => {
-  connection.query(
-    "DELETE FROM items WHERE id=?;",
-    [[req.body.id]], (err, data, fields) => {
-      if (err) throw err;
+// app.post('/item-delete', (req, res) => {
+//   connection.query(
+//     "DELETE FROM items WHERE id=?;",
+//     [[req.body.id]], (err, data, fields) => {
+//       if (err) throw err;
 
-      res.redirect('/')
-    });
-})
+//       res.redirect('/')
+//     });
+// })
 
-app.post('/update', (req, res) => {
-  connection.query(
-    "UPDATE items SET title=?, description=?, image=?  WHERE id=?;",
-    [[req.body.title], [req.body.description], [req.body.image], [req.body.id]], (err, data, fields) => {
-      if (err) throw err;
+// app.post('/update', (req, res) => {
+//   connection.query(
+//     "UPDATE items SET title=?, description=?, image=?  WHERE id=?;",
+//     [[req.body.title], [req.body.description], [req.body.image], [req.body.id]], (err, data, fields) => {
+//       if (err) throw err;
 
-      res.redirect('/')
-    });
-})
+//       res.redirect('/')
+//     });
+// })
 
 app.post("/upload", upload.single("image"), (req, res) => {
   const tempPath = req.file.path;
@@ -241,7 +236,6 @@ app.post('/login', (req, res) => {
     "SELECT * FROM users WHERE name=?",
     [[req.body.name]], (err, data, fields) => {
       if (err) throw err;
-
       if (data.length > 0) {
         let hash = data[0].password;
         let password = req.body.password;
@@ -459,20 +453,11 @@ app.get('/GenshinImpact', (req, res) => {
   });
 });
 app.get('/GenshinImpact/:id', (req, res) => {
-  connection.query("SELECT * FROM category", (err, data, fields) => {
+  connection.query("SELECT * FROM genshinimpact WHERE id=?", [req.params.id], (err, data, fields) => {
     if (err) throw err;
-    console.log(data);
-    connection.query("SELECT * FROM genshinimpact WHERE id=?", [req.params.id],
-      (err, data, fields) => {
-        if (err) throw err;
-        console.log(data);
-
-      });
     res.render('item', {
       'genshinimpact': data[0],
-      'category': data,
       auth: req.session.ayth
-    });
-
+    }); 
   });
 });
