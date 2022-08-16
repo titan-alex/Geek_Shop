@@ -19,6 +19,8 @@
     .all__category{margin: 0;}
     .all__product, .cinema, .games, .clothes, .other{margin: 13px;}
     .home__inf h1 {margin-top: 20px;}
+    .section__all{ display: block;}
+    .section__left__box img{width:  256px;}
 }
 
 

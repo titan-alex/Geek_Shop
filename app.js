@@ -66,7 +66,6 @@ app.get('/', (req, res) => {
 app.get('/catalog', (req, res) => {
   connection.query("SELECT * FROM category", (err, data, fields) => {
     if (err) throw err;
-
     res.render('catalog', {
       'category': data,
       auth: req.session.auth
@@ -136,45 +135,45 @@ app.post('/store-add-gensh', (req, res) => {
 })
 
 
-// app.post('/delete', (req, res) => {
-//   connection.query(
-//     "DELETE FROM items WHERE id=?;",
-//     [[req.body.id]], (err, data, fields) => {
-//       if (err) throw err;
+app.post('/delete', (req, res) => {
+  connection.query(
+    "DELETE FROM items WHERE id=?;",
+    [[req.body.id]], (err, data, fields) => {
+      if (err) throw err;
 
-//       res.redirect('/')
-//     });
-// })
+      res.redirect('/')
+    });
+})
 
-// app.post('/home-delete', (req, res) => {
-//   connection.query(
-//     "DELETE FROM items WHERE id=?;",
-//     [[req.body.id]], (err, data, fields) => {
-//       if (err) throw err;
+app.post('/home-delete', (req, res) => {
+  connection.query(
+    "DELETE FROM items WHERE id=?;",
+    [[req.body.id]], (err, data, fields) => {
+      if (err) throw err;
 
-//       res.redirect('/')
-//     });
-// })
+      res.redirect('/')
+    });
+})
 
-// app.post('/item-delete', (req, res) => {
-//   connection.query(
-//     "DELETE FROM items WHERE id=?;",
-//     [[req.body.id]], (err, data, fields) => {
-//       if (err) throw err;
+app.post('/item-delete', (req, res) => {
+  connection.query(
+    "DELETE FROM items WHERE id=?;",
+    [[req.body.id]], (err, data, fields) => {
+      if (err) throw err;
 
-//       res.redirect('/')
-//     });
-// })
+      res.redirect('/')
+    });
+})
 
-// app.post('/update', (req, res) => {
-//   connection.query(
-//     "UPDATE items SET title=?, description=?, image=?  WHERE id=?;",
-//     [[req.body.title], [req.body.description], [req.body.image], [req.body.id]], (err, data, fields) => {
-//       if (err) throw err;
+app.post('/update', (req, res) => {
+  connection.query(
+    "UPDATE items SET title=?, description=?, image=?  WHERE id=?;",
+    [[req.body.title], [req.body.description], [req.body.image], [req.body.id]], (err, data, fields) => {
+      if (err) throw err;
 
-//       res.redirect('/')
-//     });
-// })
+      res.redirect('/')
+    });
+})
 
 app.post("/upload", upload.single("image"), (req, res) => {
   const tempPath = req.file.path;
@@ -193,7 +192,7 @@ app.post("/upload-gensh", upload.single("image"), (req, res) => {
   const tempPath = req.file.path;
   const targetPath = path.join(
     __dirname,
-    "./public/img/category/Games/GenshinImpact/" + req.file.originalname
+    "./public/img/product/" + req.file.originalname
   );
 
   fs.rename(tempPath, targetPath, (err) => {
@@ -298,7 +297,7 @@ app.post('/cart_add', (req, res) => {
               "INSERT INTO shopping_cart (user, title, description, image, price, stars) VALUES (?, ?, ?, ?, ?, ?)",
               [user, [req.body.title], [req.body.description], [req.body.image], [req.body.price], [req.body.stars]], (err, data, fields) => {
                 if (err) throw err;
-                res.redirect('/')
+                
               });
           }
         });
@@ -458,6 +457,6 @@ app.get('/GenshinImpact/:id', (req, res) => {
     res.render('item', {
       'genshinimpact': data[0],
       auth: req.session.ayth
-    }); 
+    });
   });
 });
