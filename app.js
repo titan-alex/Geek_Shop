@@ -382,80 +382,80 @@ app.get('/clothes', (req, res) => {
 // КАТАЛОГ
 // АНИМЕ
 app.get('/aot', (req, res) => {
-  connection.query("SELECT * FROM aot", (err, data, fields) => {
+  connection.query("SELECT * FROM all_products WHERE category = 'aot'", (err, data, fields) => {
     if (err) throw err;
     res.render('catalog/anime/aot', {
-      'aot': data,
+      'all_products': data,
       auth: req.session.auth
     });
   });
 });
 app.get('/aot/:id', (req, res) => {
-  connection.query("SELECT * FROM aot WHERE id=?", [req.params.id],
+  connection.query("SELECT * FROM all_products WHERE id=?", [req.params.id],
     (err, data, fields) => {
       if (err) throw err;
 
       res.render('item', {
-        'aot': data[0],
+        'all_products': data[0],
         auth: req.session.ayth
       });
     });
 });
 app.get('/DemonSlayer', (req, res) => {
-  connection.query("SELECT * FROM DemonSlayer", (err, data, fields) => {
+  connection.query("SELECT * FROM all_products WHERE category = 'demonslayer'", (err, data, fields) => {
     if (err) throw err;
     res.render('catalog/anime/DemonSlayer', {
-      'DemonSlayer': data,
+      'all_products': data,
       auth: req.session.auth
     });
   });
 });
 app.get('/DemonSlayer/:id', (req, res) => {
-  connection.query("SELECT * FROM DemonSlayer WHERE id=?", [req.params.id],
+  connection.query("SELECT * FROM all_products WHERE id=?", [req.params.id],
     (err, data, fields) => {
       if (err) throw err;
 
       res.render('item', {
-        'DemonSlayer': data[0],
+        'all_products': data[0],
         auth: req.session.ayth
       });
     });
 });
 app.get('/OnePanchMan', (req, res) => {
-  connection.query("SELECT * FROM onepanchman", (err, data, fields) => {
+  connection.query("SELECT * FROM all_products WHERE category = 'onepanchman'", (err, data, fields) => {
     if (err) throw err;
     res.render('catalog/anime/OnePanchMan', {
-      'onepanchman': data,
+      'all_products': data,
       auth: req.session.auth
     });
   });
 });
 app.get('/OnePanchMan/:id', (req, res) => {
-  connection.query("SELECT * FROM onepanchman WHERE id=?", [req.params.id],
+  connection.query("SELECT * FROM all_products WHERE id=?", [req.params.id],
     (err, data, fields) => {
       if (err) throw err;
 
       res.render('item', {
-        'onepanchman': data[0],
+        'all_products': data[0],
         auth: req.session.ayth
       });
     });
 });
 // ИГРЫ
 app.get('/GenshinImpact', (req, res) => {
-  connection.query("SELECT * FROM genshinimpact", (err, data, fields) => {
+  connection.query("SELECT * FROM all_products WHERE category = 'genshinimpact'", (err, data, fields) => {
     if (err) throw err;
     res.render('catalog/games/GenshinImpact', {
-      'genshinimpact': data,
+      'all_products': data,
       auth: req.session.auth
     });
   });
 });
 app.get('/GenshinImpact/:id', (req, res) => {
-  connection.query("SELECT * FROM genshinimpact WHERE id=?", [req.params.id], (err, data, fields) => {
+  connection.query("SELECT * FROM all_products WHERE id=?", [req.params.id], (err, data, fields) => {
     if (err) throw err;
     res.render('item', {
-      'genshinimpact': data[0],
+      'all_products': data[0],
       auth: req.session.ayth
     });
   });

@@ -9,32 +9,32 @@
     </div>
     <div class="line"></div>
   </div>
-  <% for (let i = 0; i < genshinimpact.length; i++) { %>
+  <% for (let i = 0; i <  all_products.length; i++) { %>
   <div class="container">
     <div class="product">
       <div class="image">
-        <a href="/genshinimpact/<%= genshinimpact[i].id %>">
-          <img class="container-img" src="img/product/<%= genshinimpact[i].image %>" alt="ERROR"></a>
+        <a href="/genshinimpact/<%=  all_products[i].id %>">
+          <img class="container-img" src="img/product/<%=  all_products[i].image %>" alt="ERROR"></a>
       </div>
       <div class="info">
-        <h3><%= genshinimpact[i].title %></h3>
+        <h3><%= all_products[i].title %></h3>
 
         
         <div class="info-price">
-          <span class="price"><%= genshinimpact[i].price %> <small>₽</small></span>
+          <span class="price"><%=  all_products[i].price %> <small>₽</small></span>
 
 
           <form method="post" action="/cart_add" class="">
-            <input value="<%= genshinimpact[i].id %>" class="form-group__input" type="text" id="shopping-cart" name="shopping-cart" placeholder="" style="display: none;">
-            <input value="<%= genshinimpact[i].title %>" class="form-group__input" type="text" id="title" name="title" placeholder="title" style="display: none;">
-            <input value="<%= genshinimpact[i].description %>" class="form-group__input" type="text" id="description" name="description" placeholder="Описание" style="display: none;">
-            <input value="<%= genshinimpact[i].image %>" class="form-group__input" type="text" id="image" name="image" placeholder="image" style="display: none;">
-            <input value="<%= genshinimpact[i].price %>" class="form-group__input" type="text" id="price" name="price" placeholder="price" style="display: none;">
-            <input value="<%= genshinimpact[i].stars %>" class="form-group__input" type="text" id="stars" name="stars" placeholder="stars" style="display: none;">
+            <input value="<%=  all_products[i].id %>" class="form-group__input" type="text" id="shopping-cart" name="shopping-cart" placeholder="" style="display: none;">
+            <input value="<%=  all_products[i].title %>" class="form-group__input" type="text" id="title" name="title" placeholder="title" style="display: none;">
+            <input value="<%=  all_products[i].description %>" class="form-group__input" type="text" id="description" name="description" placeholder="Описание" style="display: none;">
+            <input value="<%=  all_products[i].image %>" class="form-group__input" type="text" id="image" name="image" placeholder="image" style="display: none;">
+            <input value="<%=  all_products[i].price %>" class="form-group__input" type="text" id="price" name="price" placeholder="price" style="display: none;">
+            <input value="<%=  all_products[i].stars %>" class="form-group__input" type="text" id="stars" name="stars" placeholder="stars" style="display: none;">
             <input class="form-button-delete" type="submit" value="Добавить в корзину">
           </form>
         </div>
-        <!-- <p class="info-description"><%= genshinimpact[i].description %></p> -->
+        <!-- <p class="info-description"><%=  all_products[i].description %></p> -->
       </div>
     </div>
 
